@@ -9,11 +9,11 @@ public class Investor {
     public String last_name;
     public String first_name;
     public String email_address;
-    public String location;
+    public String[] location;
 
-    //lacking []project, []investments;
+    //lacking []wishlist, []investments,paymaya_id,paypal_id;
 
-    public Investor(int id, String last_name, String first_name, String email_address, String location) {
+    public Investor(int id, String last_name, String first_name, String email_address, String[] location) {
         this.id = id;
         this.last_name = last_name;
         this.first_name = first_name;

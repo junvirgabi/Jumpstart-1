@@ -69,15 +69,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Toast.makeText(this,""+mDatabase,Toast.LENGTH_LONG).show();
 
-        mFirst = (TextView) findViewById(R.id.first);
-        mId = (EditText) findViewById(R.id.smeId);
-        mCompanyName = (EditText) findViewById(R.id.companyName);
-        mProjectName = (EditText) findViewById(R.id.projectOne);
-        mProjectName2 = (EditText) findViewById(R.id.projectTwo);
-        mUrl = (EditText) findViewById(R.id.url);
-        mDesc = (EditText) findViewById(R.id.description);
-        mEmail = (EditText) findViewById(R.id.emailAddress);
-        mListView = (ListView) findViewById(R.id.ListView);
+//        mFirst = (TextView) findViewById(R.id.first);
+//        mId = (EditText) findViewById(R.id.smeId);
+//        mCompanyName = (EditText) findViewById(R.id.companyName);
+//        mProjectName = (EditText) findViewById(R.id.projectOne);
+//        mProjectName2 = (EditText) findViewById(R.id.projectTwo);
+//        mUrl = (EditText) findViewById(R.id.url);
+//        mDesc = (EditText) findViewById(R.id.description);
+//        mEmail = (EditText) findViewById(R.id.emailAddress);
+//        mListView = (ListView) findViewById(R.id.ListView);
 
         mEmailField = (EditText) findViewById(R.id.email);
         mPasswordField = (EditText) findViewById(R.id.password);
@@ -98,15 +98,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("TAG", "onAuthstateChanged: signed_out");
                 }
             }
-            updateUI(user);
+            //updateUI(user);
         };
         SME[] sme = new SME[2];
         sme[0] = new SME(1,"USJ-R",new String[]{"ROBOT","CAR"},"youtube.com/asasdas","oloresralph@gmail.com","Adelante !");
         sme[1] = new SME(2,"Jollibee",new String[]{"New Dessert","New Food"},"youtube.com/1mn79x","ralpholores@gmail.com","Bida ang sarap");
-
         Map<String, SME[]> smes = new HashMap<String, SME[]>();
         smes.put("SME's",sme);
         mRef.child("SME's").setValue(sme);
+
+
+        Investor[] investor = new Investor[2];
+        investor[0] = new Investor(1,"Gabison","Junvir","junvir12@gmail.com",new String[]{"long:192.1941","lat:101.2"});
+        investor[1] = new Investor(2,"Olores","Ralph","oloresralph@gmail.com",new String[]{"long:10.241","lat:93.21"});
+        Map<String, Investor[]> investors = new HashMap<String, Investor[]>();
+        investors.put("Investors",investor);
+        mRef.child("Investors").setValue(investor);
+
+
+
 
 
 //        Map<String, Investor> investors = new HashMap<String, Investor>();
@@ -217,10 +227,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String email = mEmailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmail.setError("Required");
+            mEmailField.setError("Required");
             valid = false;
         }else {
-            mEmail.setError(null);
+            mEmailField.setError(null);
         }
 
         String password = mPasswordField.getText().toString();
@@ -252,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             findViewById(R.id.email).setVisibility(View.VISIBLE);
             findViewById(R.id.password).setVisibility(View.VISIBLE);
         }
+
     }
 
     @Override
